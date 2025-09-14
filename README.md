@@ -74,24 +74,48 @@ This project demonstrates a hands-on SOC Analyst Lab designed to simulate a smal
 ## Detection and Analysis
 1. Built a Splunk query to detect repeated failed logons. This highlights potential brute force or password spray attempts targeting the client machine.
 
+![Process](./Screenshots/Picture15.png)
+
 2. Created a search for successful logons, primarily useful on the Domain Controller where central authentication occurs. This dataset contained 1,000+ records and provided baselines for normal activity.
+
+![Process](./Screenshots/Picture16.png)
 
 3. Implemented queries for account creation/deletion and group membership changes. These events help detect privilege escalation or insider threat activity.
 
+![Process](./Screenshots/Picture17.png)
+
 4. Configured Splunk to monitor suspicious process launches (e.g. PowerShell). This use case detects potential malicious tools or script execution.
+
+![Process](./Screenshots/Picture18.png)
 
 5. Added a search for unusual outbound network connections from the Windows client. This helps detect possible command-and-control (C2) or data exfiltration activity.
 
+![Process](./Screenshots/Picture19.png)
+
 6. Leveraged Splunk’s query generation features to format raw event logs into structured dashboards. This improved readability and made it easier to analyze authentication attempts, process activity, and network events.
+
+![Process](./Screenshots/Picture20.png)
 
 7. Captured outbound network connections from endpoints, including process name, destination IP, and port. For example, EventCode 3 logs showed port 53 DNS traffic, which is typically normal but could also indicate DNS tunneling or C2 communication. Combined with failed logons, these logs help identify brute force attempts and potential data exfiltration.
 
+![Process](./Screenshots/Picture21.png)
+
 8. Tracked process launches and their executable images. This data helps identify malicious scripts and suspicious executables running on endpoints. It also provides valuable parent/child process relationships for investigations.
+
+![Process](./Screenshots/Picture22.png)
 
 9. Monitored account and group management on the Domain Controller. These events are linked to MITRE ATT&CK T1098 (Account Manipulation) and help detect privilege escalation, unauthorized user creation, or changes in group membership.
 
+![Process](./Screenshots/Picture23.png)
+
 10. Validated Kerberos packet captures between the Windows client and Domain Controller. These packets contain ticket requests used for authentication. If abused, attackers can request tickets and attempt offline password cracking. Monitoring these packets demonstrates awareness of credential theft attack paths.
+
+![Process](./Screenshots/Picture24.png)
 
 11. Observed CLDAP queries made by clients when locating the Domain Controller. While legitimate, attackers often use these requests for reconnaissance to enumerate domain controllers and services. Highlighting CLDAP activity helps identify potential early-stage attacks.
 
+![Process](./Screenshots/Picture25.png)
+
 12. Captured SMB traffic showing requests and responses during client-to-DC sessions. Since SMB can be exploited for lateral movement (e.g., pass-the-hash, file share abuse), monitoring this activity is critical for detecting adversaries moving inside the network.
+
+![Process](./Screenshots/Picture26.png)
