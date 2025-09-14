@@ -18,7 +18,7 @@ This project demonstrates a hands-on SOC Analyst Lab designed to simulate a smal
 
 ## Infrastructure Setup
 1. Configured Virtual Machines and set up three machines: Ubuntu, Windows 10, and Windows Server. Each was placed on a host-only private network to ensure isolated communication. Connectivity was validated using ping tests across the machines.
-
+![Process](./Screenshots/Picture1.png)
 2. On the Windows client, installed Sysmon via the Command Prompt [sysmon64.exe -accepteula -i sysmonconfig-export.xml]. This provided process creation, network connections, etc for Splunk ingestion.
 
 3. Deployed Splunk on Ubuntu by mounting the Splunk ISO, copied the package into the VM, and installed it using [>sudo mkdir /mnt/cdrom >sudo mount /dev/sr0 /mnt/cdrom >cp /mnt/cdrom/splunk-*.deb ~/ >sudo dpkg -i splunk-*.deb]. Configured Splunk Enterprise as the SIEM for log collection and analysis.
