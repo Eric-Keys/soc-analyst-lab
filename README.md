@@ -19,29 +19,43 @@ This project demonstrates a hands-on SOC Analyst Lab designed to simulate a smal
 ## Infrastructure Setup
 1. Configured Virtual Machines and set up three machines: Ubuntu, Windows 10, and Windows Server. Each was placed on a host-only private network to ensure isolated communication. Connectivity was validated using ping tests across the machines.
 ![Process](./Screenshots/Picture1.png)
+
 2. On the Windows client, installed Sysmon via the Command Prompt [sysmon64.exe -accepteula -i sysmonconfig-export.xml]. This provided process creation, network connections, etc for Splunk ingestion.
+![Process](./Screenshots/Picture2.png)
 
 3. Deployed Splunk on Ubuntu by mounting the Splunk ISO, copied the package into the VM, and installed it using [>sudo mkdir /mnt/cdrom >sudo mount /dev/sr0 /mnt/cdrom >cp /mnt/cdrom/splunk-*.deb ~/ >sudo dpkg -i splunk-*.deb]. Configured Splunk Enterprise as the SIEM for log collection and analysis.
+![Process](./Screenshots/Picture3.png)
 
 4. Accessed Splunk Web and connected to the Splunk web interface at http://:8000. Created two custom indexes:wineventlog- for Windows Security/System/Application events | Sysmon- for Sysmon operational logs
+![Process](./Screenshots/Picture4.png)
 
 5. Installed the Splunk Universal Forwarder on the Windows client. Updated inputs.conf to forward Sysmon and Windows Event Logs into Splunk on port 9997. Confirmed ingestion by verifying events appeared in the correct indexes.
+![Process](./Screenshots/Picture5.png)
 
 6. Installed Active Directory Domain Services (AD DS) on the Windows Server and promoted it to a Domain Controller (lab.local). This provided centralized authentication and policy management.
+![Process](./Screenshots/Picture6.png)
 
 7. Added two test accounts in AD and enforced password reset upon first login to simulate realistic security practices.
+![Process](./Screenshots/Picture7.png)
 
 8. Configured static IPv4 addresses for both the Splunk server and the Domain Controller (based on assigned DHCP addresses). This ensured consistent connectivity within the lab environment.
+![Process](./Screenshots/Picture8.png)
 
 9. Created two AD groups: ITAdmins and Sales. Assigned one test user to each group to model role-based access.
+![Process](./Screenshots/Picture9.png)
 
 10. Applied stricter password requirements using a Group Policy Object (GPO). Policies were enforced through gpmc.msc by navigating through computer configurations all the way to password policy. This was done to simulate account hardening and generated logs for monitoring.
+![Process](./Screenshots/Picture10.png)
 
 11. Joined the Windows client to the new domain, enabling centralized logon/authentication.
+![Process](./Screenshots/Picture11.png)
 
 12. Logged into the domain with a test user account (“Alice”). The enforced GPO required a password change at first login, confirming domain and policy functionality.
+![Process](./Screenshots/Picture12.png)
 
 13. Confirmed logs were flowing from both the Windows client and Domain Controller into Splunk indexes (wineventlog, sysmon). At this point, data pipelines were live for analysis.
+![Process](./Screenshots/Picture13.png)
+![Process](./Screenshots/Picture14.png)
 
 ## Detection and Analysis
 1. Built a Splunk query to detect repeated failed logons. This highlights potential brute force or password spray attempts targeting the client machine.
