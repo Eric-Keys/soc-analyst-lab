@@ -1,5 +1,5 @@
 # soc-analyst-lab
-SOC analyst lab showcasing blue team skills with Splunk SIEM, Sysmon(EDR), Wireshark, and Active Directory for log collection, threat detection, and 
+SOC analyst lab showcasing blue team skills with Splunk SIEM, Sysmon(EDR), Wireshark, and Active Directory for log collection, threat detection, and threat analysis.
 
 ## Overview
 This project demonstrates a hands-on SOC Analyst Lab designed to simulate a small enterprise environment and prctice blue team cybersecurity skills. It combines many in-demand tools to provide realistic scenarios for log collection, event correlation, and threat detection. This project helped me gain experience in incident monitoring and investigation.
